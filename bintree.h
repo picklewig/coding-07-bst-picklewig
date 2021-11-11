@@ -27,6 +27,8 @@ class BinTree{
         void displayPreOrder(DataNode*);
         void displayPostOrder(DataNode*);
         void displayInOrder(DataNode*);
+        //method for finding the minimum value node
+        DataNode* minValueNode(DataNode*);
     public:
         BinTree();
         ~BinTree();

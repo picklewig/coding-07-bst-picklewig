@@ -32,7 +32,7 @@ void BinTree::DisplayTree(){
 //public overloaded methods
 
 void BinTree::clear(){
-
+    clear(root)
 }
 
 bool BinTree::addNode(int id, const string *info){
@@ -46,24 +46,45 @@ bool BinTree::addNode(int id, const string *info){
             added = true;
             count++;
         }
+        else{
+            delete newNode;
+        }
     }
     return added;
 }
 
-bool BinTree::removeNode(int){
-
+bool BinTree::removeNode(int id){
+    int tempCount = count;
+    bool removed = false;
+    removeNode(id, root);
+    if(count < tempCount){
+        removed = true;
+    }
+    return removed;
 }
 
-bool BinTree::getNode(Data*, int){
-
+bool BinTree::getNode(Data* dataStruct, int id){
+    bool gotten = false;
+    if(id > 0){
+        if(getNode(dataStruct, id, root)){
+            gotten = true;
+        }
+    }
+    return gotten;
 }
 
-bool BinTree::contains(int){
-
+bool BinTree::contains(int id){
+    bool isContained = false;
+    if(id > 0){
+        if(contains(id, root)){
+            isContained = true;
+        }
+    }
+    return isContained;
 }
 
 int BinTree::getHeight(){
-
+    return getHeight(root);
 }
 
 void BinTree::displayPreOrder(){
@@ -114,4 +135,14 @@ void BinTree::displayPostOrder(DataNode*){
 
 void BinTree::displayInOrder(DataNode*){
 
+}
+
+//method for finding the minimum value node
+
+DataNode* BinTree::minValueNode(DataNode* node){
+    DataNode* current = node;
+    while(current and current->left != NULL){
+        current = current->left;
+    }
+    return current;
 }
