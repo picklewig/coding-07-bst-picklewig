@@ -19,7 +19,7 @@ class BinTree{
         int count;
         //overloads
         void clear(DataNode*);
-        bool AddNode(DataNode*, DataNode**);
+        bool addNode(DataNode*, DataNode**);
         DataNode* removeNode(int, DataNode*);
         bool getNode(Data*, int, DataNode*);
         bool contains(int, DataNode*);
@@ -36,10 +36,10 @@ class BinTree{
         bool isEmpty();
         int getCount();
         bool getRootData(Data*);
-        void DisplayTree();
+        void displayTree();
         //overloading methods
         void clear();
-        bool AddNode(int, const string*);
+        bool addNode(int, const string*);
         bool removeNode(int);
         bool getNode(Data*, int);
         bool contains(int);

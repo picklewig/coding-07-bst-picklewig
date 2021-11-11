@@ -5,7 +5,7 @@
 #include "bintree.h"
 
 BinTree::BinTree(){
-    *root = NULL;
+    root = NULL;
     count = 0;
 }
 
@@ -18,21 +18,31 @@ bool BinTree::isEmpty(){
 }
 
 int BinTree::getCount(){
-
+    return count;
 }
 
-bool BinTree::getRootData(Data *){
-
+bool BinTree::getRootData(Data* dataStruct){
+    bool gotRootData = false;
+    if(root){
+        dataStruct->information = root->data.information;
+        dataStruct->id = root->data.id;
+        gotRootData = true;
+    }
+    else{
+        dataStruct->information = "";
+        dataStruct->id = -1;
+    }
+    return gotRootData;
 }
 
-void BinTree::DisplayTree(){
+void BinTree::displayTree(){
 
 }
 
 //public overloaded methods
 
 void BinTree::clear(){
-    clear(root)
+    clear(root);
 }
 
 bool BinTree::addNode(int id, const string *info){
@@ -41,7 +51,7 @@ bool BinTree::addNode(int id, const string *info){
     if(id > 0 and *info != ""){
         DataNode* newNode = new DataNode;
         newNode->data.id = id;
-        newNode->data.information = info;
+        newNode->data.information = *info;
         if(addNode(newNode, root)){
             added = true;
             count++;
@@ -105,7 +115,7 @@ void BinTree::clear(DataNode*){
 
 }
 
-bool BinTree::AddNode(DataNode*, DataNode**){
+bool BinTree::addNode(DataNode*, DataNode**){
 
 }
 
@@ -133,8 +143,13 @@ void BinTree::displayPostOrder(DataNode*){
 
 }
 
-void BinTree::displayInOrder(DataNode*){
-
+void BinTree::displayInOrder(DataNode* temproot){
+    if(temproot){
+        displayInOrder(temproot->left);
+        cout << temproot->data.id << " " << temproot->data.information << endl;
+        displayInOrder(temproot->right);
+    }
+    return;
 }
 
 //method for finding the minimum value node

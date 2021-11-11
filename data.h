@@ -18,4 +18,4 @@ struct DataNode {
     DataNode *left, *right;
 };
 
-#endif /* DATA_H */
+#endif /* BINTREE_DATA_H */
