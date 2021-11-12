@@ -14,7 +14,11 @@ BinTree::~BinTree(){
 }
 
 bool BinTree::isEmpty(){
-
+    bool empty = false;
+    if(root == NULL){
+        empty = true;
+    }
+    return empty;
 }
 
 int BinTree::getCount(){
@@ -36,7 +40,19 @@ bool BinTree::getRootData(Data* dataStruct){
 }
 
 void BinTree::displayTree(){
-
+    if(isEmpty()){
+        cout << "Tree is Empty" << endl;
+    }
+    else{
+        cout << "Tree is NOT empty" << endl;
+    }
+    cout << "Height: " << getHeight() << endl;
+    cout << endl << "Pre-Order Traversal" << endl;
+    displayPreOrder();
+    cout << endl << "In-Order Traversal" << endl;
+    displayInOrder();
+    cout << endl << "Post-Order Traversal" << endl;
+    displayPostOrder();
 }
 
 //public overloaded methods
@@ -52,7 +68,7 @@ bool BinTree::addNode(int id, const string *info){
         DataNode* newNode = new DataNode;
         newNode->data.id = id;
         newNode->data.information = *info;
-        if(addNode(newNode, root)){
+        if(addNode(newNode, &root)){
             added = true;
             count++;
         }
@@ -98,15 +114,15 @@ int BinTree::getHeight(){
 }
 
 void BinTree::displayPreOrder(){
-
+    displayPreOrder(root);
 }
 
 void BinTree::displayPostOrder(){
-
+    displayPostOrder(root);
 }
 
 void BinTree::displayInOrder(){
-
+    displayInOrder(root);
 }
 
 //private overloaded methods
@@ -115,8 +131,14 @@ void BinTree::clear(DataNode*){
 
 }
 
-bool BinTree::addNode(DataNode*, DataNode**){
-
+bool BinTree::addNode(DataNode* newNode, DataNode** tempRoot){
+    bool added = false;
+    if(tempRoot){
+        if(newNode->data.id < tempRoot->data.id){
+            addNode(newNode, &tempRoot->left);
+        }
+    }
+    return added;
 }
 
 DataNode* BinTree::removeNode(int, DataNode*){
@@ -135,19 +157,41 @@ int BinTree::getHeight(DataNode*){
 
 }
 
-void BinTree::displayPreOrder(DataNode*){
-
+void BinTree::displayPreOrder(DataNode* temproot){
+    if(temproot){
+        cout << temproot->data.id << " " << temproot->data.information << endl;
+        if(temproot->left){ //validation argument it doesn't need to open a new recursion
+            displayInOrder(temproot->left);
+        }
+        if(temproot->right){
+            displayInOrder(temproot->right);
+        }
+    }
+    return;
 }
 
-void BinTree::displayPostOrder(DataNode*){
-
+void BinTree::displayPostOrder(DataNode* temproot){
+    if(temproot){
+        if(temproot->left){ //validation argument it doesn't need to open a new recursion
+            displayInOrder(temproot->left);
+        }
+        if(temproot->right){
+            displayInOrder(temproot->right);
+        }
+        cout << temproot->data.id << " " << temproot->data.information << endl;
+    }
+    return;
 }
 
 void BinTree::displayInOrder(DataNode* temproot){
     if(temproot){
-        displayInOrder(temproot->left);
+        if(temproot->left){ //validation argument it doesn't need to open a new recursion
+            displayInOrder(temproot->left);
+        }
         cout << temproot->data.id << " " << temproot->data.information << endl;
-        displayInOrder(temproot->right);
+        if(temproot->right){
+            displayInOrder(temproot->right);
+        }
     }
     return;
 }
