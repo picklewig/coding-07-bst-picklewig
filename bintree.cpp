@@ -155,21 +155,20 @@ bool BinTree::addNode(DataNode* newNode, DataNode** tempRoot){
             added = addNode(newNode, &(*tempRoot)->right);
         }
     }
-   else{
+    else{
         *tempRoot = newNode;
         added = true;
-        count++;
     }
-    return added;
+   return added;
 }
 
 DataNode* BinTree::removeNode(int id, DataNode* tempRoot){
     if(tempRoot){
         if(id < tempRoot->data.id){
-            removeNode(id, tempRoot->left);
+            tempRoot->left = removeNode(id, tempRoot->left);
         }
         else if(id > tempRoot->data.id){
-            removeNode(id, tempRoot->right);
+            tempRoot->right = removeNode(id, tempRoot->right);
         }
         else{
             DataNode* tempNode;
@@ -204,10 +203,10 @@ bool BinTree::getNode(Data* dataStruct, int id, DataNode* tempRoot){
         }
         else{
             if(id < tempRoot->data.id){
-                contains(id, tempRoot->left);
+                gotten = getNode(dataStruct, id, tempRoot->left);
             }
             if(id > tempRoot->data.id){
-                contains(id, tempRoot->right);
+                gotten = getNode(dataStruct, id, tempRoot->right);
             }
         }
     }
