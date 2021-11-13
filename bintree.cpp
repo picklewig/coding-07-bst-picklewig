@@ -149,13 +149,13 @@ bool BinTree::addNode(DataNode* newNode, DataNode** tempRoot){
     bool added = false;
     if(*tempRoot){
         if(newNode->data.id < (*tempRoot)->data.id){
-            addNode(newNode, &(*tempRoot)->left);
+            added = addNode(newNode, &(*tempRoot)->left);
         }
         if(newNode->data.id > (*tempRoot)->data.id){
-            addNode(newNode, &(*tempRoot)->right);
+            added = addNode(newNode, &(*tempRoot)->right);
         }
     }
-    else{
+   else{
         *tempRoot = newNode;
         added = true;
         count++;
@@ -239,17 +239,17 @@ bool BinTree::contains(int id, DataNode* tempRoot){
 int BinTree::getHeight(DataNode* tempRoot){
     int leftHeight = 0;
     int rightHeight = 0;
+    int Height = 0;
     if(tempRoot){
         if(tempRoot->left){
-            leftHeight++;
-            getHeight(tempRoot->left);
+            leftHeight = getHeight(tempRoot->left);
         }
         if(tempRoot->right){
-            rightHeight++;
-            getHeight(tempRoot->right);
+            rightHeight = getHeight(tempRoot->right);
         }
+        Height = max(leftHeight, rightHeight) + 1;
     }
-    return max(leftHeight+1, rightHeight+1);
+    return Height;
 }
 
 void BinTree::displayPreOrder(DataNode* temproot){
