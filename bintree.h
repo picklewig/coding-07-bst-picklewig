@@ -12,6 +12,7 @@
 using std::cout;
 using std::endl;
 using std::string;
+using std::max;
 
 class BinTree{
     private:
