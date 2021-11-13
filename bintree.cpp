@@ -70,6 +70,8 @@ bool BinTree::addNode(int id, const string *info){
         DataNode* newNode = new DataNode;
         newNode->data.id = id;
         newNode->data.information = *info;
+        newNode->left = NULL;
+        newNode->right = NULL;
         if(addNode(newNode, &root)){
             added = true;
             count++;
@@ -146,13 +148,10 @@ void BinTree::clear(DataNode* tempRoot){
 bool BinTree::addNode(DataNode* newNode, DataNode** tempRoot){
     bool added = false;
     if(*tempRoot){
-        cout << "root exists" << endl;
         if(newNode->data.id < (*tempRoot)->data.id){
-            cout << "going left" << endl;
             addNode(newNode, &(*tempRoot)->left);
         }
         if(newNode->data.id > (*tempRoot)->data.id){
-            cout << "going right" << endl;
             addNode(newNode, &(*tempRoot)->right);
         }
     }
@@ -238,18 +237,14 @@ bool BinTree::contains(int id, DataNode* tempRoot){
 }
 
 int BinTree::getHeight(DataNode* tempRoot){
-    cout << "getHeight called" << endl;
     int leftHeight = 0;
     int rightHeight = 0;
     if(tempRoot){
-        cout << "root exists" << endl;
         if(tempRoot->left){
-            cout << "going left" << endl;
             leftHeight++;
             getHeight(tempRoot->left);
         }
         if(tempRoot->right){
-            cout << "going right" << endl;
             rightHeight++;
             getHeight(tempRoot->right);
         }
