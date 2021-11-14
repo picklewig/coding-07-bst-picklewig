@@ -148,14 +148,11 @@ void BinTree::clear(DataNode* tempRoot){
 bool BinTree::addNode(DataNode* newNode, DataNode** tempRoot){
     bool added = false;
     if(*tempRoot){
-        cout << endl << "new id " << newNode->data.id << " : current id " << (*tempRoot)->data.id << endl;
         if(newNode->data.id < (*tempRoot)->data.id){
-            cout << "going left" << endl;
-            added = addNode(newNode, &(*tempRoot)->left);
+            added = addNode(newNode, &((*tempRoot)->left));
         }
         if(newNode->data.id > (*tempRoot)->data.id){
-            cout << "going right" << endl;
-            added = addNode(newNode, &(*tempRoot)->right);
+            added = addNode(newNode, &((*tempRoot)->right));
         }
     }
     else{
@@ -258,10 +255,10 @@ void BinTree::displayPreOrder(DataNode* temproot){
     if(temproot){
         cout << temproot->data.id << " " << temproot->data.information << endl;
         if(temproot->left){
-            displayInOrder(temproot->left);
+            displayPreOrder(temproot->left);
         }
         if(temproot->right){
-            displayInOrder(temproot->right);
+            displayPreOrder(temproot->right);
         }
     }
     return;
@@ -270,10 +267,10 @@ void BinTree::displayPreOrder(DataNode* temproot){
 void BinTree::displayPostOrder(DataNode* temproot){
     if(temproot){
         if(temproot->left){
-            displayInOrder(temproot->left);
+            displayPostOrder(temproot->left);
         }
         if(temproot->right){
-            displayInOrder(temproot->right);
+            displayPostOrder(temproot->right);
         }
         cout << temproot->data.id << " " << temproot->data.information << endl;
     }
