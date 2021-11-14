@@ -135,14 +135,15 @@ void BinTree::clear(DataNode* tempRoot){
     if(tempRoot){
         if(tempRoot->left){
             clear(tempRoot->left);
-            tempRoot->left = NULL;
         }
         if(tempRoot->right){
             clear(tempRoot->right);
-            tempRoot->right = NULL;
         }
+        tempRoot->left = NULL;
+        tempRoot->right = NULL;
         delete tempRoot;
     }
+    return;
 }
 
 bool BinTree::addNode(DataNode* newNode, DataNode** tempRoot){
@@ -188,7 +189,7 @@ DataNode* BinTree::removeNode(int id, DataNode* tempRoot){
                 tempNode = minValueNode(tempRoot->right);
                 tempRoot->data.id = tempNode->data.id;
                 tempRoot->data.information = tempNode->data.information;
-                removeNode(tempNode->data.id, tempRoot->right);
+                tempRoot->right = removeNode(tempNode->data.id, tempRoot->right);
             }
         }
     }
@@ -225,10 +226,10 @@ bool BinTree::contains(int id, DataNode* tempRoot){
         }
         else{
             if(id < tempRoot->data.id){
-                contains(id, tempRoot->left);
+                isContained = contains(id, tempRoot->left);
             }
             if(id > tempRoot->data.id){
-                contains(id, tempRoot->right);
+                isContained = contains(id, tempRoot->right);
             }
         }
     }
