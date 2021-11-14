@@ -60,6 +60,7 @@ void BinTree::displayTree(){
 
 void BinTree::clear(){
     clear(root);
+    root = NULL;
 }
 
 bool BinTree::addNode(int id, const string *info){
