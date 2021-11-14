@@ -1,6 +1,8 @@
-/*
- * Your comment header here
- */
+/**********
+  * author: Isaac Shepherd
+ * file: bintree.cpp
+ * defines methods, contructor, and destructor of class prototype in bintree.h
+ ************/
 
 #include "bintree.h"
 
@@ -252,7 +254,7 @@ int BinTree::getHeight(DataNode* tempRoot){
 void BinTree::displayPreOrder(DataNode* temproot){
     if(temproot){
         cout << temproot->data.id << " " << temproot->data.information << endl;
-        if(temproot->left){ //validation argument it doesn't need to open a new recursion
+        if(temproot->left){
             displayInOrder(temproot->left);
         }
         if(temproot->right){
@@ -264,7 +266,7 @@ void BinTree::displayPreOrder(DataNode* temproot){
 
 void BinTree::displayPostOrder(DataNode* temproot){
     if(temproot){
-        if(temproot->left){ //validation argument it doesn't need to open a new recursion
+        if(temproot->left){
             displayInOrder(temproot->left);
         }
         if(temproot->right){
@@ -277,7 +279,7 @@ void BinTree::displayPostOrder(DataNode* temproot){
 
 void BinTree::displayInOrder(DataNode* temproot){
     if(temproot){
-        if(temproot->left){ //validation argument it doesn't need to open a new recursion
+        if(temproot->left){
             displayInOrder(temproot->left);
         }
         cout << temproot->data.id << " " << temproot->data.information << endl;

@@ -1,6 +1,9 @@
-/*
- * Your comment header here
- */
+/*********
+ * author: Isaac Shepherd
+ * file: bintree.h
+ * holds all class prototypes for binary tree object. includes data.h for access to defined data structures.
+ * includes iostream and string to utilize in class methods.
+ *********/
 
 #ifndef BINTREE_BINTREE_H
 #define BINTREE_BINTREE_H
