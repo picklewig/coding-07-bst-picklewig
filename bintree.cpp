@@ -60,7 +60,6 @@ void BinTree::displayTree(){
 
 void BinTree::clear(){
     clear(root);
-    count = 0;
 }
 
 bool BinTree::addNode(int id, const string *info){
@@ -133,15 +132,12 @@ void BinTree::displayInOrder(){
 
 void BinTree::clear(DataNode* tempRoot){
     if(tempRoot){
-        if(tempRoot->left){
-            clear(tempRoot->left);
-        }
-        if(tempRoot->right){
-            clear(tempRoot->right);
-        }
+        clear(tempRoot->left);
+        clear(tempRoot->right);
         tempRoot->left = NULL;
         tempRoot->right = NULL;
         delete tempRoot;
+        count--;
     }
     return;
 }
