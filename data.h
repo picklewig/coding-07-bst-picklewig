@@ -1,6 +1,9 @@
-/*
- * Do not modify this file
- */
+/*********
+ * author: Isaac Shepherd
+ * file: data.h
+ * holds prototypes for structures used in binary tree. DataNode structure make up the binary tree. Data structure
+ * holds id and string information used for traversing in specific binary tree methods.
+ *********/
 
 #ifndef BINTREE_DATA_H
 #define BINTREE_DATA_H

@@ -1,6 +1,9 @@
-/*
- * Do not modify this file
- */
+/*********
+ * author: Isaac Shepherd
+ * file: main.h
+ * includes assets for randomization, printing, and string variables. includes functions.h and
+ * bintree.h for access to their functions and methods.
+ *********/
 
 #ifndef BINTREE_MAIN_H
 #define BINTREE_MAIN_H

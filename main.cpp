@@ -1,6 +1,8 @@
-/*
- * Do not modify this file
- */
+/*********
+ * author: Isaac Shepherd
+ * file: main.cpp
+ * testbed for binary tree object methods. only includes main.h
+ *********/
 
 #include "main.h"
 
