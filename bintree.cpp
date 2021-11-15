@@ -88,7 +88,7 @@ bool BinTree::addNode(int id, const string *info){
 bool BinTree::removeNode(int id){
     int tempCount = count;
     bool removed = false;
-    removeNode(id, root);
+    root = removeNode(id, root);
     if(count < tempCount){
         removed = true;
     }
@@ -171,24 +171,29 @@ DataNode* BinTree::removeNode(int id, DataNode* tempRoot){
             tempRoot->right = removeNode(id, tempRoot->right);
         }
         else{
-            DataNode* tempNode;
-            if(tempRoot->left == NULL){
-                tempNode = tempRoot->right;
+            DataNode* nodeHolder;
+            if(tempRoot->left == NULL and tempRoot->right == NULL){ //no child case
                 delete tempRoot;
-                tempRoot = tempNode;
+                tempRoot = NULL;
+                count--;
+            }
+            else if(tempRoot->left == NULL){ //one child cases
+                nodeHolder = tempRoot;
+                tempRoot = tempRoot->right;
+                delete nodeHolder;
                 count--;
             }
             else if(tempRoot->right == NULL){
-                tempNode = tempRoot->left;
-                delete tempRoot;
-                tempRoot = tempNode;
+                nodeHolder = tempRoot;
+                tempRoot = tempRoot->left;
+                delete nodeHolder;
                 count--;
             }
-            else{
-                tempNode = minValueNode(tempRoot->right);
-                tempRoot->data.id = tempNode->data.id;
-                tempRoot->data.information = tempNode->data.information;
-                tempRoot->right = removeNode(tempNode->data.id, tempRoot->right);
+            else{ //two child case
+                nodeHolder = minValueNode(tempRoot->right);
+                tempRoot->data.id = nodeHolder->data.id;
+                tempRoot->data.information = nodeHolder->data.information;
+                tempRoot->right = removeNode(nodeHolder->data.id, tempRoot->right);
             }
         }
     }
